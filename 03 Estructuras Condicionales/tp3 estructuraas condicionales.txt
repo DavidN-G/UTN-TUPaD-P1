@@ -1,0 +1,155 @@
+Práctico 3: Estructuras condicionales
+
+1)
+edad = int(input("Por favor, ingresa tu edad: "))
+if edad > 18:
+    print("Es mayor de edad")
+
+
+   2)
+ nota = float(input("Por favor, ingresa tu nota: "))
+if nota >= 6:
+    print("Aprobado")
+else:
+    print("Desaprobado")
+
+3)
+while True:
+    try:
+        numero = int(input("Ingrese un número par: "))
+        if numero % 2 == 0:
+            print("Ha ingresado un número par")
+            break
+        else:
+            print("Por favor, ingrese un número par")
+    except ValueError:
+        print("Error: Debe ingresar un número entero")
+
+4)
+while True:
+    try:
+        edad = int(input("Ingrese su edad: "))
+        if edad < 0:
+            print("Error: La edad no puede ser negativa.")
+            continue
+        break
+    except ValueError:
+        print("Error: Debe ingresar un número entero válido.")
+
+if edad < 12:
+    categoria = "Niño/a"
+elif edad < 18:
+    categoria = "Adolescente"
+elif edad < 30:
+    categoria = "Adulto/a joven"
+else:
+    categoria = "Adulto/a"
+
+print(f"Usted pertenece a la categoría: {categoria}")
+
+
+5)
+while True:
+    contraseña = input("Ingrese su contraseña: ")
+    longitud = len(contraseña)
+    
+    if 8 <= longitud <= 14:
+        print("Ha ingresado una contraseña correcta")
+        break
+    else:
+        print("Por favor, ingrese una contraseña de entre 8 y 14 caracteres")
+
+
+6) 
+import random
+import statistics
+
+numeros_aleatorios = [random.randint(1, 100) for _ in range(50)]
+
+media = statistics.mean(numeros_aleatorios)
+mediana = statistics.median(numeros_aleatorios)
+moda = statistics.mode(numeros_aleatorios)
+
+print("Números aleatorios:", numeros_aleatorios)
+print(f"Media: {media}")
+print(f"Mediana: {mediana}")
+print(f"Moda: {moda}")
+
+if media > mediana > moda:
+    print("Distribución con sesgo positivo (a la derecha).")
+elif media < mediana < moda:
+    print("Distribución con sesgo negativo (a la izquierda).")
+elif media == mediana == moda:
+    print("Distribución sin sesgo.")
+else:
+    print("No se puede determinar el sesgo de forma clara con los datos obtenidos.")
+
+
+7)
+texto = input("Ingresa una frase o palabra: ")
+if texto[-1].lower() in "aeiou":
+    texto += "!"
+print("Resultado:", texto)
+
+
+8)
+nombre = input("Ingresa tu nombre: ")
+print("Elige una opción:")
+print("1. Convertir el nombre a MAYÚSCULAS")
+print("2. Convertir el nombre a minúsculas")
+print("3. Convertir el nombre con la Primera Letra en mayúscula")
+opcion = input("Ingresa el número de la opción (1, 2 o 3): ")
+if opcion == "1":
+    nombre_transformado = nombre.upper()
+elif opcion == "2":
+    nombre_transformado = nombre.lower()
+elif opcion == "3":
+    nombre_transformado = nombre.title()
+else:
+    nombre_transformado = "Opción no válida."
+print("Resultado:", nombre_transformado)
+
+
+9)
+
+def clasificar_terremoto(magnitud):
+    if magnitud < 3:
+        return "Muy leve (imperceptible)"
+    elif 3 <= magnitud < 4:
+        return "Leve (ligeramente perceptible)"
+    elif 4 <= magnitud < 5:
+        return "Moderado (sentido por personas, pero generalmente no causa daños)"
+    elif 5 <= magnitud < 6:
+        return "Fuerte (puede causar daños en estructuras débiles)"
+    elif 6 <= magnitud < 7:
+        return "Muy fuerte (puede causar daños significativos)"
+    else:
+        return "Extremo (puede causar graves daños a gran escala)"
+
+def determinar_estacion(hemisferio, mes):
+    estaciones = {
+        "N": {
+            "invierno": [12, 1, 2],
+            "primavera": [3, 4, 5],
+            "verano": [6, 7, 8],
+            "otoño": [9, 10, 11]
+        },
+        "S": {
+            "verano": [12, 1, 2],
+            "otoño": [3, 4, 5],
+            "invierno": [6, 7, 8],
+            "primavera": [9, 10, 11]
+        }
+    }
+    
+    for estacion, meses in estaciones[hemisferio].items():
+        if mes in meses:
+            return estacion.capitalize()
+
+# Solicitar datos al usuario
+magnitud = float(input("Ingresa la magnitud del terremoto: "))
+print("Clasificación del terremoto:", clasificar_terremoto(magnitud))
+
+hemisferio = input("Ingresa el hemisferio (N/S): ").strip().upper()
+mes = int(input("Ingresa el número del mes (1-12): "))
+print("Estación del año:", determinar_estacion(hemisferio, mes))
